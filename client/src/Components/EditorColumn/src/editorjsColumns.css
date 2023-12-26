@@ -1,0 +1,95 @@
+/* REQUIRED STYLES */
+
+
+.ce-editorjsColumns_col{
+  flex: 50%;
+  background: #fff;
+  border-radius: 20px;
+  padding: 10px;
+  /* Subtext 1 */
+}
+
+.ce-popover--opened {
+  z-index: 1000000000;
+}
+
+.ce-editorjsColumns_wrapper{
+  display: flex;
+  width:50%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.right-end-editor-dropdown {
+  display: flex;
+  justify-content: flex-end !important;
+  padding: 0.4em 0;
+
+}
+
+
+.ce-editorjsColumns_wrapper-right{
+  display: flex;
+  width:50%;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.mb-10 {
+  margin-bottom:  10px;
+}
+
+.top-column {
+  margin-bottom:  10px;
+
+}
+
+.top-column > div> div>div>div>div>div {
+  /* border: 1px solid black; */
+  /* margin-top: 10px; */
+  padding: 5px;
+
+}
+
+div:empty:before {
+  content:attr(data-placeholder);
+  color:gray
+}
+
+.w-100 {
+  width:  100%;
+  display: flex;
+  /* margin-top: -30px; */
+  gap: 10px;
+}
+
+
+/* 
+
+These styles will also affect the parent editor!!!!!!
+
+*/
+
+.ce-block__content, 
+.ce-toolbar__content {
+  max-width:100%;
+}
+
+/*   */
+.ce-toolbar__actions{
+  right: 0; 
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+/* Would be better to remove --narrow mode */
+/* Issue Raised */
+.codex-editor--narrow .codex-editor__redactor{
+  margin: 0;
+}
+
+/* Required to prevent clipping */
+.ce-toolbar{
+  z-index: 4;
+}
+

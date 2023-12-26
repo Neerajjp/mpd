@@ -1,0 +1,112 @@
+.ce-paragraph {
+  line-height: 1.6em;
+  outline: none;
+  word-break: break-all;
+}
+
+
+#mySelect { 
+  padding: 10px 20px 10px 0;
+  font-size: 18px;
+  /* margin-top: 10px; */
+  /* margin-bottom: 2px; */
+  /* margin-left: -2px; */
+
+
+}
+
+.right-end-editor-dropdown {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 11px;
+}
+
+select[disabled] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 0.01px;
+  text-overflow: '';
+}
+
+.ce-paragraph[data-placeholder]:empty::before{
+content: attr(data-placeholder);
+color: #707684;
+font-weight: normal;
+opacity: 0;
+}
+.codex-editor__redactor{
+  padding-bottom: 0;
+}
+
+@media screen and (max-width: 1000px) {
+  .ce-editorjsColumns_col {
+    padding: 0;
+  }
+
+  .ce-editorjsColumns_col {
+    border-radius: 4px;
+    /* padding: 2px; */
+  }
+  .top-column > div> div>div>div>div>div {
+  
+  padding: 0;
+  }
+.right-end-editor-dropdown {
+  margin-top: 7px;
+}
+  .ce-paragraph .right-end-editor-dropdown{
+    font-size: 13px;
+
+
+  }
+  
+#mySelect {
+  padding : 0;
+  font-size: 13px;
+}
+
+.codex-editor--empty .ce-block .ce-paragraph[data-placeholder]:empty::before{
+  font-size: 13px;
+}
+.codex-editor--narrow .ce-toolbar__plus {
+  width: 15px;
+  height: 15px;
+}
+.codex-editor svg { 
+  width: 15px;
+  height: 15px;
+
+}
+.ce-toolbar__settings-btn { 
+  width: 15px;
+  height: 15px;
+}
+.icon icon--dots {
+  width: 15px;
+  height: 15px;
+  
+}
+}
+
+
+
+
+
+/** Show placeholder at the first paragraph if Editor is empty */
+.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty::before {
+opacity: 1;
+/* margin-left: 20px; */
+}
+
+.codex-editor--toolbox-opened .ce-block:first-child .ce-paragraph[data-placeholder]:empty::before,
+.codex-editor--empty .ce-block:first-child .ce-paragraph[data-placeholder]:empty:focus::before {
+opacity: 1;
+}
+
+.ce-paragraph p:first-of-type{
+  margin-top: 0;
+}
+
+.ce-paragraph p:last-of-type{
+  margin-bottom: 0;
+}
