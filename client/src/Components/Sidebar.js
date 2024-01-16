@@ -47,7 +47,7 @@ export default function Sidebar({children, isLogin}) {
                                     <span className="text-white">Projects</span>
                                 </div>
                             </li>
-                            <li className="rounded-sm">
+                            {/* <li className="rounded-sm">
                                 <a
                                     href="#"
                                     className="flex items-center p-2 space-x-3 rounded-md"
@@ -140,7 +140,7 @@ export default function Sidebar({children, isLogin}) {
                                     </svg>
                                     <span className="text-white">Help</span>
                                 </a>
-                            </li>
+                            </li> */}
                             <li  className="rounded-sm cursor-pointer">
                                 <div
                                 onClick={logout}

@@ -47,12 +47,12 @@ function Login() {
                   <button onClick={()=>login(email, password)} className="w-full text-white py-2 px-4 rounded text-sm focus:outline-none mgq-bg-primary focus:shadow-outline" type="button">
                     Sign In
                   </button>
-                  <button className="w-full mt-4 py-2 px-4 rounded border hover:bg-white bg-slate-50 text-sm" type="button">
+                  {/* <button className="w-full mt-4 py-2 px-4 rounded border hover:bg-white bg-slate-50 text-sm" type="button">
                     <span className="flex justify-center mx-atuo">
                       <img style={{width:'20px'}} className="mr-2" src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png" alt="google logo" />
                       Sign In with Google
                     </span>
-                  </button>
+                  </button> */}
                 </div>
                 <p className="text-center cursor-pointer mt-2 text-gray-500 text-xs">
                   Don't have an account?
