@@ -14,6 +14,8 @@
     "axios": "^0.27.2",
     "editorjs-alert": "^1.0.3",
     "editorjs-paragraph-with-alignment": "^3.0.0",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^2.5.1",
     "postcss": "^8.4.16",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
