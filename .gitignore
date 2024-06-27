@@ -1,0 +1,26 @@
+# Dependency directories
+/node_modules
+
+# Environment files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build files
+/build
+
+# Coverage directory
+/coverage
+
+# Temporary files
+*.log
+*.tmp
+
+# Editor directories and files
+.vscode
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
