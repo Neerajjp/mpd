@@ -49,18 +49,82 @@ function Project() {
     };
   }, []);
 
-  console.log(editorData, "editorData");
+  // const downloadPDF = () => {
+  //   html2canvas(document.querySelector(`#main-editor`)).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const pdf = new jsPDF("p", "mm", "a4");
+  //     const imgProps = pdf.getImageProperties(imgData);
+  //     const pdfWidth = pdf.internal.pageSize.getWidth();
+  //     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+  //     pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+  //     pdf.save(`${projectData?.name}.pdf`);
+  //   });
+  // };
 
   const downloadPDF = () => {
-    html2canvas(document.querySelector(`#main-editor`)).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save(`${projectData?.name}.pdf`);
-    });
+    const element = document.querySelector("#main-editor");
+    if (!element) {
+      console.error("Element with id 'main-editor' not found");
+      return;
+    }
+
+    html2canvas(element)
+      .then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        const margin = 10; // 10mm margin
+
+        // Calculate the scale to fit the width of the PDF page
+        const scale = (pdfWidth - margin * 2) / canvas.width;
+        const scaledCanvasHeight = canvas.height * scale;
+
+        // Calculate the number of pages needed
+        const totalPages = Math.ceil(
+          scaledCanvasHeight / (pdfHeight - margin * 2)
+        );
+
+        for (let i = 0; i < totalPages; i++) {
+          if (i > 0) {
+            pdf.addPage();
+          }
+          const srcY = (i * (pdfHeight - margin * 2)) / scale; // Calculate the y-coordinate on the source canvas
+          const srcHeight = (pdfHeight - margin * 2) / scale; // Calculate the height of the source area on the canvas
+
+          // Create a new canvas to draw the portion of the original canvas
+          const tempCanvas = document.createElement("canvas");
+          tempCanvas.width = canvas.width;
+          tempCanvas.height = srcHeight;
+
+          const tempContext = tempCanvas.getContext("2d");
+          tempContext.drawImage(canvas, 0, -srcY);
+
+          const tempImgData = tempCanvas.toDataURL("image/png");
+          pdf.addImage(
+            tempImgData,
+            "PNG",
+            margin,
+            margin,
+            pdfWidth - margin * 2,
+            pdfHeight - margin * 2,
+            undefined,
+            "FAST"
+          );
+        }
+
+        // Save the PDF with a filename based on the project data
+        const filename = `${projectData?.name || "document"}.pdf`;
+        pdf.save(filename);
+        // const mainEditorContent = document.querySelector('#main-editor').innerHTML;
+        // window.ReactNativeWebView.postMessage(mainEditorContent);
+
+        const base64Image = canvas.toDataURL("image/png");
+        window.ReactNativeWebView.postMessage(base64Image);
+      })
+      .catch((error) => {
+        console.error("Error generating PDF:", error);
+      });
   };
 
   return (
@@ -107,7 +171,7 @@ function Project() {
           </button> */}
           {type === "view" && (
             <button
-            className="mgq-bg-primary mb-3 radius-3 hover:mgq-bg-primary-dark text-white py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline mr-3"
+              className="mgq-bg-primary mb-3 radius-3 hover:mgq-bg-primary-dark text-white py-2 px-4 rounded text-sm focus:outline-none focus:shadow-outline mr-3"
               type="button"
               onClick={downloadPDF}
             >
